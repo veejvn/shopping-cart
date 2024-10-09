@@ -3,6 +3,7 @@ package javaweb.shopping_cart.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,8 +24,8 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests((authorizeRequests) -> authorizeRequests
-                .requestMatchers("/","/home","/login","/403","/css/**","/images/**").permitAll()
+        http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                .requestMatchers("/home","/login","/403","/css/**","/images/**").permitAll()
                 .requestMatchers("/registration","/webjars/**").permitAll()
                 .requestMatchers("/products").permitAll()
                 .anyRequest().authenticated()
