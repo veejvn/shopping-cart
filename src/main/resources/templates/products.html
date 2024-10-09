@@ -6,8 +6,8 @@
 <header th:insert="~{/fragments/header :: navbar}"></header>
 <main class="container-fluid">
   <h1>List of products</h1>
-  <div class="card " style="width: 100%;" th:each="product : ${products}">
-    <div class="card-header">
+  <div class="card" style="width: 100%;" th:each="product : ${products.content}">
+  <div class="card-header">
       <h3 th:text="${product.name}"></h3>
     </div>
     <div class="card-body">
@@ -16,12 +16,13 @@
       <span th:inline="text">In Stock: [[${product.quantity}]]</span>
       <a class="d-flex justify-content-end"
          th:href="@{'/shoppingCart/addProduct/{id}'(id=${product.id})}"
-         sec:authorize="isAuthenticated()" th:if="${product.quantity}>0">
+         sec:authorize="isAuthenticated()" th:if="${product.quantity > 0}">
         <button type="button" class="btn btn-primary" th:text="Buy">Buy</button>
       </a>
     </div>
   </div>
   <div th:replace="~{/fragments/pagination :: pagination(URLparameter='/products')}"></div>
+
 </main>
 <div th:block th:replace="~{/fragments/footer :: footer}"></div>
 </body>

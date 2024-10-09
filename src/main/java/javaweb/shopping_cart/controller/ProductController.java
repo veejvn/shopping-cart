@@ -29,7 +29,7 @@ public class ProductController {
         CurrentPageTransporter.setCurrentPage(currentPage);
         System.out.println("-----------SET qsCurrentPage----------- = " + currentPage);
 
-        Sort sort = Sort.by("Name").ascending();
+        Sort sort = Sort.by("name").ascending();
         Page<Product> products = productService.findAllProductsPageable(PageRequest.of(evalPage, 5, sort));
 
         Pager pager = new Pager(products);
@@ -37,7 +37,7 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("products", products);
         modelAndView.addObject("pager", pager);
-        modelAndView.setViewName("/products");
+        modelAndView.setViewName("products");
 
         return modelAndView;
     }

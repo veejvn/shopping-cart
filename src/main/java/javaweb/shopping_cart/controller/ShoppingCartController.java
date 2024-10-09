@@ -31,7 +31,7 @@ public class ShoppingCartController {
         productService.findById(productId).ifPresent(shoppingCartService::addProduct);
         int qsCurrentPage = CurrentPageTransporter.getCurrentPage();
 
-        return "redirect:/product" + "?page=" + qsCurrentPage;
+        return "redirect:/products" + "?page=" + qsCurrentPage;
     }
 
 }
